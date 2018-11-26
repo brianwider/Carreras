@@ -1,0 +1,25 @@
+﻿@model CarreraCaballos.Models.ApuestaViewModel
+
+<h5>Carrera @Model.Id @Model.Carrera.Inicio.ToShortDateString() @Model.Carrera.Inicio.ToShortTimeString()</h5>
+@Html.HiddenFor(model => model.CarreraId)
+<div class="form-group">
+    @Html.LabelFor(model => model.Valor, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.CaballoId, htmlAttributes: new { @class = "col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.CaballoId, new SelectList(Model.Caballos, "Id", "Descripcion", Model.CaballoId), "Seleccione un caballo", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CaballoId, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Guardar" class="btn btn-primary" />
+    </div>
+</div>

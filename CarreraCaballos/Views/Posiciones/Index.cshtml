@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CarreraCaballos.Database.Posicion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Posición
+        </th>
+        <th>
+            Caballo
+        </th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.Numero
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Caballo.Descripcion)
+            </td>
+        </tr>
+    }
+
+
+    @Html.ActionLink("Volver","Index","Carreras")
+</table>

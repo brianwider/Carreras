@@ -1,0 +1,29 @@
+﻿@model CarreraCaballos.Database.Apuesta
+
+<h4>Apuesta</h4>
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Valor)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Valor)
+    </dd>
+
+    <dt>
+        Caballo
+    </dt>
+
+    <dd>
+        @Model.Caballo.Descripcion
+    </dd>
+
+    <dt>
+        Carrera
+    </dt>
+
+    <dd>
+        @Model.Carrera.Id @Model.Carrera.Inicio.ToShortDateString() @Model.Carrera.Inicio.ToShortTimeString()
+    </dd>
+</dl>

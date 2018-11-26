@@ -1,0 +1,22 @@
+﻿@model CarreraCaballos.Models.CarreraViewModel
+<div>
+    <h4>Carrera</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inicio)
+        </dd>
+    </dl>
+
+    <h6>Caballos</h6>
+    <ul>
+        @foreach (var caballo in Model.Caballos)
+        {
+            <li>@caballo.Descripcion</li>
+        }
+    </ul>
+</div>

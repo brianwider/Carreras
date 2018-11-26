@@ -1,0 +1,86 @@
+﻿@model CarreraCaballos.Models.CarreraViewModel
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.fn.datepicker.dates['es'] = {
+            days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+            daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+            daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+            months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+            monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+            today: "Hoy",
+            monthsTitle: "Meses",
+            clear: "Borrar"
+        };
+
+        $('#datetimepicker').datepicker({
+            format: "dd/mm/yyyy",
+            language: "es"
+        });
+
+        var selectedCaballos = [];
+
+        function updateCaballosArray() {
+            var hiddens = "";
+            $.each(selectedCaballos,
+                function (key, value) {
+                    hiddens += '<input type="hidden" name=CaballosSeleccionados[' +
+                        key +
+                        '] value="' +
+                        value +
+                        '"/>';
+                });
+            $("#caballosSelectedId").html(hiddens);
+        }
+
+        $("#addCaballo").click(function () {
+            var caballoId = $("#optCaballo").val();
+            if (!alreadySelectedMedioPago(caballoId)) {
+                addCaballoTable(caballoId, $("#optCaballo option:selected").text());
+            }
+        });
+
+        function addCaballoTable(caballoId,caballoText) {
+            selectedCaballos.push(caballoId);
+            $("#tableCaballo tr:last").after('<tr id="' +
+                caballoId +
+                '"><td>' +
+                caballoText +
+                '</td><td><button  class="btnEliminar btn btn-outline-danger" type="button" caballoId=' +
+                caballoId +
+                '>Eliminar</button> </td></tr>');
+            updateCaballosArray();
+        }
+
+        $('#tableCaballo').on('click',
+            ".btnEliminar",
+            function () {
+                $(this).closest('tr').remove();
+                var idToremove = $(this).attr("caballoId");
+                var filtered = $.grep(selectedCaballos,
+                    function (e) {
+                        return e.id != idToremove;
+                    });
+                selectedCaballos = filtered;
+                updateCaballosArray();
+            });
+
+        function alreadySelectedMedioPago(id) {
+            var exists = false;
+            $.each(selectedCaballos,
+                function (key, value) {
+                    if (value === id) {
+                        exists = true;
+                    }
+                });
+            return exists;
+        }
+
+        @foreach (var caballo in Model.CaballosSeleccionadosPresentacion)
+        {
+            <text>
+                addCaballoTable(@caballo.Id, '@caballo.Descripcion');
+            </text>
+        }
+
+    })
+</script>

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<CarreraCaballos.Database.Apuesta>
+
+@{
+    ViewBag.Title = "Apuestas";
+}
+
+<h2>Apuestas</h2>
+
+<p>
+    <span>Para crear una apuesta cree una Carrera y hágalo desde la misma.</span>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+        <th>
+            Caballo
+        </th>
+        <th>
+            Carrera
+        </th>
+        <th>Resultado</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @item.Caballo.Descripcion
+            </td>
+            <td>
+                @item.Carrera.Id @item.Carrera.Inicio.ToShortDateString() @item.Carrera.Inicio.ToShortTimeString()
+            </td>
+            <td>
+                @{
+                    var ganador = item.Carrera.Posiciones.OrderBy(x => x.Numero).FirstOrDefault();
+                    if (item.Carrera.Posiciones.Count != 0)
+                    {
+                        if (ganador != null && ganador.Caballo.Id == item.CaballoId)
+                        {
+                            <span>Ganador</span>
+                        }
+                        else
+                        {
+                            <span>Perdedor</span>
+                        }
+                    }
+                    else
+                    {
+                        <span>Por verse</span>
+                    }
+                }
+            </td>
+            <td>
+                @if (item.Carrera.Inicio <= DateTime.Now)
+                {
+                    <span>@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) |</span>
+                    <span>@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" }) |</span>
+                }
+                else
+                {
+                    <span>@Html.ActionLink("Posiciones", "Index", "Posiciones", new { Id = item.Id }, new { @class = "btn btn-outline-secondary" })</span>
+                }
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-secondary" })
+            </td>
+        </tr>
+    }
+
+</table>

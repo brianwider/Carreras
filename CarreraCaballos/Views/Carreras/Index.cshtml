@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CarreraCaballos.Database.Carrera>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Inicio)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inicio)
+            </td>
+            <td>
+                @if (User.IsInRole("Administrador"))
+                {
+                    <span>@Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) |</span>
+                    <span>@Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" }) |</span>
+                }
+                @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-secondary" }) |
+                @if (item.Posiciones.Count == 0)
+                {
+                    <span>@Html.ActionLink("Apostar", "Create", "Apuestas", new { carreraId = item.Id }, new { @class = "btn btn-success" }) |</span>
+                    using (Html.BeginForm("Correr", "Carreras", new { id = item.Id }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-outline-secondary">Correr</button>
+                    }
+                }
+                else
+                {
+                    @Html.ActionLink("Posiciones", "Index", "Posiciones", new { Id = item.Id }, new { @class = "btn btn-outline-secondary" })
+                }
+            </td>
+        </tr>
+    }
+
+</table>
