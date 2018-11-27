@@ -8,7 +8,7 @@
 
 ### Instalación
 
-* Instalar paquetes Nuget (Debería ser automático pero en caso de que NO, darle manualmente *
+*** Instalar paquetes Nuget (Debería ser automático pero en caso de que NO, darle manualmente *
 
 Crear la base y correr las migraciónes:
 -   Abrir la consola de Nuget
