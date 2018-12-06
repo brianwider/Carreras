@@ -1,16 +1,16 @@
 ﻿@model CarreraCaballos.Models.CarreraViewModel
 
-<div class="form-group">
+<div class="form-group margin-fixer mb-8">
     @Html.LabelFor(model => model.Inicio, htmlAttributes: new { @class = "col-md-2" })
-    <div class="col-md-10">
+    <div class="col-md-10 ">
         @Html.EditorFor(model => model.Inicio, new { htmlAttributes = new { @class = "form-control", @id = "datetimepicker" } })
         @Html.ValidationMessageFor(model => model.Inicio, "", new { @class = "text-danger" })
     </div>
 </div>
 
-<div class="form-group">
+<div class="form-group margin-fixer">
     <label class="col-md-2">Caballo</label>
-    <div class="col-md-8">
+    <div class="col-md-8 mb-8">
         <select id="optCaballo" class="form-control">
             <option value="">Seleccione un caballo</option>
             @foreach (var caballo in Model.Caballos)
@@ -19,7 +19,7 @@
             }
         </select>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 mb-16">
         <button type="button" class="btn btn-outline-secondary" id="addCaballo">Agregar</button>
     </div>
 </div>
@@ -32,7 +32,7 @@
 <div id="caballosSelectedId"></div>
 
 <div class="form-group">
-    <div class="col-md-offset-2 col-md-10">
+    <div class="col-md-offset-2 col-md-10 no-padding">
         <input type="submit" value="Guardar" class="btn btn-primary" />
     </div>
 </div>

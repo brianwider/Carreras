@@ -357,7 +357,9 @@
     <Content Include="Views\Apuestas\Index.cshtml" />
     <Content Include="Views\Carreras\Scripts.cshtml" />
     <Content Include="Views\Carreras\CreateEditFormPartial.cshtml" />
-    <Content Include="Views\Carreras\DetailsPartial.cshtml" />
+    <Content Include="Views\Carreras\Detail.cshtml">
+      <BrowseToURL>~/Carreras/DetailsPartial</BrowseToURL>
+    </Content>
     <Content Include="Views\Apuestas\CreateEditFormPartial.cshtml" />
     <Content Include="Views\Apuestas\Detail.cshtml" />
     <Content Include="Views\Posiciones\Index.cshtml" />

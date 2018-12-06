@@ -59,14 +59,14 @@
             <td>
                 @if (item.Carrera.Inicio <= DateTime.Now)
                 {
-                    <span>@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) |</span>
-                    <span>@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" }) |</span>
+                    <span>@Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) |</span>
+                    <span>@Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" }) |</span>
                 }
                 else
                 {
                     <span>@Html.ActionLink("Posiciones", "Index", "Posiciones", new { Id = item.Id }, new { @class = "btn btn-outline-secondary" })</span>
                 }
-                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-secondary" })
+                @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-secondary" })
             </td>
         </tr>
     }

@@ -1,14 +1,13 @@
 ﻿@model CarreraCaballos.Database.Carrera
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar carrera";
 }
 
-<h2>Delete</h2>
+<h2>Eliminar</h2>
 
-<h3>Esta seguro de querer eliminar?</h3>
+<h3>Esta seguro de querer eliminar ésta carrera?</h3>
 <div>
-    @Html.Partial("Details")
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
