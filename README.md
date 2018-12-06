@@ -7,14 +7,13 @@
 -   Nuget Package Manager Console (Para poder ejecutar la migracion de la base de datos)
 
 ### Instalación
-
-* Instalar paquetes Nuget (Debería ser automático pero en caso de que NO, darle manualmente *
+**Instalar paquetes Nuget (Debería ser automático pero en caso de que NO, darle manualmente**
 
 Crear la base y correr las migraciónes:
 -   Abrir la consola de Nuget
 -   Ejecutar el update
 ```sh
-update-database
+$ update-database
 ```
 
 ### Troubleshooting
